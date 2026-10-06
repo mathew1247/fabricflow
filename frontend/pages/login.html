@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | FabricFlow Analytics</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+<body class="login-body">
+
+  <div class="login-card">
+    <div class="login-brand">
+      <div class="login-logo-box">
+        <i class="fa-solid fa-shirt"></i>
+      </div>
+      <h1>FabricFlow</h1>
+      <p>Inventory Analytics & Garment Demand Intelligence</p>
+    </div>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label class="form-label" for="emailInput">Email Address</label>
+        <div class="input-with-icon">
+          <i class="fa-regular fa-envelope input-icon"></i>
+          <input type="email" id="emailInput" class="form-control" placeholder="admin@fabricflow.com" value="admin@fabricflow.com" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="passwordInput">Password</label>
+        <div class="input-with-icon">
+          <i class="fa-solid fa-lock input-icon"></i>
+          <input type="password" id="passwordInput" class="form-control" placeholder="••••••••••••" value="fabricflow2024" required>
+          <button type="button" class="toggle-password-btn" id="togglePasswordBtn" title="Toggle password visibility">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="login-meta-row">
+        <label class="remember-me">
+          <input type="checkbox" checked style="accent-color: var(--primary);">
+          <span>Remember me</span>
+        </label>
+        <a href="javascript:void(0)" onclick="showToast('Password reset link sent to registered email.', 'info')">Forgot password?</a>
+      </div>
+
+      <button type="submit" id="submitBtn" class="btn btn-primary btn-login">
+        <span>Sign In</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </form>
+
+    <div class="demo-credentials-box">
+      <div style="font-weight: 700; color: var(--text-main); margin-bottom: 0.2rem;">
+        <i class="fa-solid fa-circle-info text-primary"></i> Demo Access
+      </div>
+      <div>Click <strong>Sign In</strong> to explore the complete frontend prototype with live mock dataset.</div>
+    </div>
+  </div>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/auth.js"></script>
+</body>
+</html>

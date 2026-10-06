@@ -1,0 +1,377 @@
+{
+  "products": {
+    "P001": {
+      "id": "P001",
+      "name": "Classic Cotton T-Shirt",
+      "category": "Casual",
+      "size": "M",
+      "price": 899,
+      "cost_price": 450,
+      "supplier": "ABC Textiles",
+      "stock": 128,
+      "min_stock": 25,
+      "status": "Normal",
+      "created_at": "2024-08-01T10:00:00Z",
+      "last_updated": "2026-10-06T08:12:25.501888+00:00"
+    },
+    "P002": {
+      "id": "P002",
+      "name": "Slim Fit Denim Jeans",
+      "category": "Denim",
+      "size": "32",
+      "price": 1999,
+      "cost_price": 1050,
+      "supplier": "Vogue Fabrics",
+      "stock": 10,
+      "min_stock": 20,
+      "status": "Low",
+      "created_at": "2024-08-05T11:30:00Z"
+    },
+    "P003": {
+      "id": "P003",
+      "name": "Oxford Formal Shirt",
+      "category": "Formal",
+      "size": "L",
+      "price": 1499,
+      "cost_price": 750,
+      "supplier": "Prime Weaves",
+      "stock": 85,
+      "min_stock": 15,
+      "status": "Normal",
+      "created_at": "2024-08-10T09:15:00Z"
+    },
+    "P004": {
+      "id": "P004",
+      "name": "Quilted Winter Jacket",
+      "category": "Outerwear",
+      "size": "XL",
+      "price": 3499,
+      "cost_price": 1800,
+      "supplier": "Apex Garments",
+      "stock": 4,
+      "min_stock": 12,
+      "status": "Critical",
+      "created_at": "2024-08-12T14:20:00Z"
+    },
+    "P005": {
+      "id": "P005",
+      "name": "Oversized Graphic Tee",
+      "category": "Casual",
+      "size": "L",
+      "price": 1099,
+      "cost_price": 500,
+      "supplier": "ABC Textiles",
+      "stock": 140,
+      "min_stock": 30,
+      "status": "Normal",
+      "created_at": "2024-08-15T16:00:00Z"
+    },
+    "P006": {
+      "id": "P006",
+      "name": "Linen Casual Trousers",
+      "category": "Casual",
+      "size": "34",
+      "price": 1899,
+      "cost_price": 950,
+      "supplier": "Heritage Looms",
+      "stock": 45,
+      "min_stock": 15,
+      "status": "Normal",
+      "created_at": "2024-08-18T12:00:00Z"
+    },
+    "P007": {
+      "id": "P007",
+      "name": "Flannel Plaid Shirt",
+      "category": "Formal",
+      "size": "M",
+      "price": 1599,
+      "cost_price": 800,
+      "supplier": "Prime Weaves",
+      "stock": 8,
+      "min_stock": 18,
+      "status": "Low",
+      "created_at": "2024-08-20T13:45:00Z"
+    },
+    "P008": {
+      "id": "P008",
+      "name": "Fleece Hooded Sweatshirt",
+      "category": "Outerwear",
+      "size": "L",
+      "price": 2199,
+      "cost_price": 1100,
+      "supplier": "Apex Garments",
+      "stock": 65,
+      "min_stock": 20,
+      "status": "Normal",
+      "created_at": "2024-08-22T15:10:00Z"
+    },
+    "P009": {
+      "id": "P009",
+      "name": "Ripped Skinny Jeans",
+      "category": "Denim",
+      "size": "30",
+      "price": 2299,
+      "cost_price": 1200,
+      "supplier": "Vogue Fabrics",
+      "stock": 3,
+      "min_stock": 15,
+      "status": "Critical",
+      "created_at": "2024-08-25T11:00:00Z"
+    },
+    "P010": {
+      "id": "P010",
+      "name": "Polo Collar T-Shirt",
+      "category": "Casual",
+      "size": "M",
+      "price": 1199,
+      "cost_price": 600,
+      "supplier": "ABC Textiles",
+      "stock": 95,
+      "min_stock": 25,
+      "status": "Normal",
+      "created_at": "2024-08-28T10:30:00Z"
+    },
+    "P011": {
+      "id": "P011",
+      "name": "Silk Blend Party Dress Shirt",
+      "category": "Formal",
+      "size": "S",
+      "price": 2499,
+      "cost_price": 1300,
+      "supplier": "Heritage Looms",
+      "stock": 32,
+      "min_stock": 10,
+      "status": "Normal",
+      "created_at": "2024-09-01T14:00:00Z"
+    },
+    "P012": {
+      "id": "P012",
+      "name": "Bomber Windbreaker Jacket",
+      "category": "Outerwear",
+      "size": "M",
+      "price": 2899,
+      "cost_price": 1500,
+      "supplier": "Apex Garments",
+      "stock": 14,
+      "min_stock": 15,
+      "status": "Low",
+      "created_at": "2024-09-02T16:20:00Z"
+    }
+  },
+  "sales": {
+    "S001": {
+      "id": "S001",
+      "product": "Classic Cotton T-Shirt",
+      "category": "Casual",
+      "quantity": 20,
+      "unit_price": 899,
+      "total": 17980,
+      "date": "2024-09-01",
+      "status": "Completed",
+      "customer": "Walk-in Retail"
+    },
+    "S002": {
+      "id": "S002",
+      "product": "Slim Fit Denim Jeans",
+      "category": "Denim",
+      "quantity": 10,
+      "unit_price": 1299,
+      "total": 12990,
+      "date": "2024-09-02",
+      "status": "Completed",
+      "customer": "Urban Trends Store"
+    },
+    "S003": {
+      "id": "S003",
+      "product": "Oxford Formal Shirt",
+      "category": "Formal",
+      "quantity": 15,
+      "unit_price": 899,
+      "total": 13485,
+      "date": "2024-09-03",
+      "status": "Completed",
+      "customer": "Corporate Order"
+    },
+    "S004": {
+      "id": "S004",
+      "product": "Quilted Winter Jacket",
+      "category": "Outerwear",
+      "quantity": 5,
+      "unit_price": 1799,
+      "total": 8995,
+      "date": "2024-09-04",
+      "status": "Completed",
+      "customer": "Online Buyer"
+    },
+    "S005": {
+      "id": "S005",
+      "product": "Oversized Graphic Tee",
+      "category": "Casual",
+      "quantity": 30,
+      "unit_price": 849,
+      "total": 25470,
+      "date": "2024-09-05",
+      "status": "Pending",
+      "customer": "Youth Boutique"
+    },
+    "S006": {
+      "id": "S006",
+      "product": "Linen Casual Trousers",
+      "category": "Casual",
+      "quantity": 12,
+      "unit_price": 1899,
+      "total": 22788,
+      "date": "2024-09-06",
+      "status": "Completed",
+      "customer": "Lifestyle Mart"
+    },
+    "S007": {
+      "id": "S007",
+      "product": "Fleece Hooded Sweatshirt",
+      "category": "Outerwear",
+      "quantity": 8,
+      "unit_price": 2199,
+      "total": 17592,
+      "date": "2024-09-07",
+      "status": "Completed",
+      "customer": "Walk-in Retail"
+    },
+    "S008": {
+      "id": "S008",
+      "product": "Polo Collar T-Shirt",
+      "category": "Casual",
+      "quantity": 25,
+      "unit_price": 1199,
+      "total": 29975,
+      "date": "2024-09-08",
+      "status": "Completed",
+      "customer": "Club Wear Inc"
+    },
+    "S009": {
+      "id": "S009",
+      "product": "Flannel Plaid Shirt",
+      "category": "Formal",
+      "quantity": 6,
+      "unit_price": 1599,
+      "total": 9594,
+      "date": "2024-09-09",
+      "status": "Pending",
+      "customer": "Executive Retail"
+    },
+    "S010": {
+      "id": "S010",
+      "product": "Silk Blend Party Dress Shirt",
+      "category": "Formal",
+      "quantity": 14,
+      "unit_price": 2499,
+      "total": 34986,
+      "date": "2024-09-10",
+      "status": "Completed",
+      "customer": "Festive Hub"
+    },
+    "S011": {
+      "id": "S011",
+      "product": "Classic Cotton T-Shirt",
+      "category": "Casual",
+      "quantity": 2,
+      "unit_price": 45.0,
+      "unitPrice": 45.0,
+      "total": 90.0,
+      "total_formatted": "\u20b990",
+      "date": "2026-10-06",
+      "status": "Completed",
+      "created_at": "2026-10-06T08:12:25.500829+00:00"
+    }
+  },
+  "suppliers": {
+    "SUP-101": {
+      "id": "SUP-101",
+      "name": "ABC Textiles Co.",
+      "contact": "+91 98765 43210",
+      "email": "orders@abctextiles.com",
+      "address": "Surat Textile Hub, Gujarat",
+      "products_supplied": 18,
+      "status": "Active",
+      "lead_time_days": 5
+    },
+    "SUP-102": {
+      "id": "SUP-102",
+      "name": "Vogue Fabrics Mill",
+      "contact": "+91 98111 22334",
+      "email": "info@voguefabrics.in",
+      "address": "Tirupur Apparel Park, Tamil Nadu",
+      "products_supplied": 12,
+      "status": "Active",
+      "lead_time_days": 7
+    },
+    "SUP-103": {
+      "id": "SUP-103",
+      "name": "Prime Weaves Ltd.",
+      "contact": "+91 97234 56789",
+      "email": "sales@primeweaves.com",
+      "address": "Bhiwandi Industrial Estate, Maharashtra",
+      "products_supplied": 15,
+      "status": "Active",
+      "lead_time_days": 4
+    },
+    "SUP-104": {
+      "id": "SUP-104",
+      "name": "Apex Garments Supply",
+      "contact": "+91 99444 88776",
+      "email": "contact@apexgarments.com",
+      "address": "Ludhiana Woolen Park, Punjab",
+      "products_supplied": 9,
+      "status": "Active",
+      "lead_time_days": 8
+    },
+    "SUP-105": {
+      "id": "SUP-105",
+      "name": "Heritage Looms & Threads",
+      "contact": "+91 98333 11223",
+      "email": "support@heritagelooms.com",
+      "address": "Varanasi Silk Cluster, UP",
+      "products_supplied": 6,
+      "status": "Under Review",
+      "lead_time_days": 10
+    }
+  },
+  "categories": {
+    "CAT-001": {
+      "id": "CAT-001",
+      "name": "Casual",
+      "description": "T-Shirts, Polo, Casual Trousers & Loungewear",
+      "item_count": 5
+    },
+    "CAT-002": {
+      "id": "CAT-002",
+      "name": "Denim",
+      "description": "Denim Jeans, Jackets, and Ripped Jeans",
+      "item_count": 2
+    },
+    "CAT-003": {
+      "id": "CAT-003",
+      "name": "Formal",
+      "description": "Oxford Shirts, Plaid Shirts, and Silk Dress Shirts",
+      "item_count": 3
+    },
+    "CAT-004": {
+      "id": "CAT-004",
+      "name": "Outerwear",
+      "description": "Winter Jackets, Bomber Jackets, Hoodies & Fleece",
+      "item_count": 2
+    }
+  },
+  "inventory_logs": {
+    "INV-101": {
+      "product_id": "P001",
+      "product_name": "Classic Cotton T-Shirt",
+      "previous_stock": 120,
+      "new_stock": 130,
+      "adjustment_type": "add",
+      "quantity_changed": 10,
+      "reason": "Stock replenishment",
+      "timestamp": "2026-10-06T08:12:25.485669+00:00",
+      "id": "INV-101"
+    }
+  }
+}

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demand Forecast | FabricFlow Analytics</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/sidebar.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/forecast.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <a href="dashboard.html" class="sidebar-brand">
+        <div class="brand-icon-wrapper">
+          <i class="fa-solid fa-shirt"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">FabricFlow</span>
+          <span class="brand-subtitle">Inventory Analytics</span>
+        </div>
+      </a>
+
+      <ul class="sidebar-menu">
+        <li class="nav-item">
+          <a href="dashboard.html" class="nav-link">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="products.html" class="nav-link">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Products</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="inventory.html" class="nav-link">
+            <i class="fa-solid fa-boxes-stacked"></i>
+            <span>Inventory</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="sales.html" class="nav-link">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Sales</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="suppliers.html" class="nav-link">
+            <i class="fa-solid fa-truck-fast"></i>
+            <span>Suppliers</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="javascript:void(0)" class="nav-link nav-dropdown-toggle" id="analyticsToggle">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Analytics</span>
+            <i class="fa-solid fa-chevron-down chevron-icon"></i>
+          </a>
+          <div class="nav-submenu">
+            <a href="analytics.html?tab=sales" class="submenu-link">
+              <i class="fa-solid fa-arrow-trend-up" style="font-size:0.75rem;margin-right:4px;"></i> Sales Analytics
+            </a>
+            <a href="analytics.html?tab=inventory" class="submenu-link">
+              <i class="fa-solid fa-box-archive" style="font-size:0.75rem;margin-right:4px;"></i> Inventory Analytics
+            </a>
+            <a href="analytics.html?tab=performance" class="submenu-link">
+              <i class="fa-solid fa-star" style="font-size:0.75rem;margin-right:4px;"></i> Product Performance
+            </a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a href="forecast.html" class="nav-link active">
+            <i class="fa-solid fa-bullseye"></i>
+            <span>Forecast</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="reports.html" class="nav-link">
+            <i class="fa-solid fa-file-lines"></i>
+            <span>Reports</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <a href="settings.html" class="nav-link">
+          <i class="fa-solid fa-gear"></i>
+          <span>Settings</span>
+        </a>
+        <a href="login.html" class="nav-link logout-link">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+
+      <!-- Header -->
+      <header class="app-header">
+        <div class="header-left">
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="page-title-group">
+            <h1>Demand Forecast</h1>
+            <p class="page-subtitle">Predict future garment demand using historical sales trends.</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="user-profile-menu">
+            <button class="user-profile-btn" id="userProfileBtn">
+              <div class="user-avatar"><i class="fa-solid fa-user"></i></div>
+              <div class="user-info"><div class="user-name">Admin</div></div>
+              <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; color: var(--text-muted); margin-left: 0.25rem;"></i>
+            </button>
+
+            <div class="dropdown-menu" id="userProfileDropdown">
+              <a href="settings.html" class="dropdown-item"><i class="fa-regular fa-user"></i> Profile</a>
+              <div class="dropdown-divider"></div>
+              <a href="login.html" class="dropdown-item text-danger"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Container -->
+      <main class="content-area">
+
+        <!-- Top Controls & Forecast Horizon -->
+        <div class="toolbar-container">
+          <div class="forecast-header-badge">
+            <i class="fa-solid fa-brain"></i>
+            <span>Predictive Intelligence Engine</span>
+          </div>
+
+          <div class="forecast-period-selector">
+            <button class="forecast-pill" data-period="7">7 Days Horizon</button>
+            <button class="forecast-pill active" data-period="30">30 Days Horizon</button>
+            <button class="forecast-pill" data-period="90">90 Days Horizon</button>
+          </div>
+        </div>
+
+        <!-- 4 Forecast KPI Cards -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon-box kpi-icon-stock"><i class="fa-solid fa-boxes-stacked"></i></div>
+              <span class="kpi-label">Current Stock</span>
+            </div>
+            <div class="kpi-middle"><span class="kpi-value" id="fcCurrentStock">120 pcs</span></div>
+            <div class="kpi-bottom"><span class="text-muted">Available in warehouse</span></div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon-box kpi-icon-sales"><i class="fa-solid fa-gauge-high"></i></div>
+              <span class="kpi-label">Average Daily Sales</span>
+            </div>
+            <div class="kpi-middle"><span class="kpi-value" id="fcAvgDaily">14 pcs/day</span></div>
+            <div class="kpi-bottom"><span class="kpi-trend positive"><i class="fa-solid fa-arrow-up"></i> 6.2%</span> <span>velocity</span></div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon-box" style="background:#f5f3ff; color:#7c3aed;"><i class="fa-solid fa-chart-line"></i></div>
+              <span class="kpi-label">Predicted Demand</span>
+            </div>
+            <div class="kpi-middle"><span class="kpi-value text-primary" id="fcPredictedDemand">420 pcs</span></div>
+            <div class="kpi-bottom"><span class="text-purple font-semibold">Over selected horizon</span></div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon-box" style="background:#ecfdf5; color:#059669;"><i class="fa-solid fa-shield-halved"></i></div>
+              <span class="kpi-label">Recommended Stock</span>
+            </div>
+            <div class="kpi-middle"><span class="kpi-value text-success" id="fcRecommendedStock">480 pcs</span></div>
+            <div class="kpi-bottom"><span class="text-success font-semibold">Includes 15% safety buffer</span></div>
+          </div>
+        </div>
+
+        <!-- Historical vs Predicted Demand Chart Card -->
+        <div class="card" style="margin-bottom: 1.75rem;">
+          <div class="card-header">
+            <div class="card-title">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>Demand Trajectory: Historical vs Predicted</span>
+            </div>
+            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">
+              Confidence Interval: <strong>94.2%</strong>
+            </span>
+          </div>
+
+          <div style="height: 320px; position: relative;">
+            <canvas id="forecastChartCanvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Forecast Status & Procurement Table Card -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">
+              <i class="fa-solid fa-clipboard-list"></i>
+              <span>Stock Procurement & Demand Advice</span>
+            </div>
+
+            <div class="filter-group">
+              <select class="select-filter" id="fcCategoryFilter" style="font-size:0.8rem; padding: 0.35rem 1.75rem 0.35rem 0.65rem;">
+                <option value="all">All Categories</option>
+                <option value="Casual">Casual</option>
+                <option value="Denim">Denim</option>
+                <option value="Formal">Formal</option>
+                <option value="Outerwear">Outerwear</option>
+              </select>
+
+              <select class="select-filter" id="fcStatusFilter" style="font-size:0.8rem; padding: 0.35rem 1.75rem 0.35rem 0.65rem;">
+                <option value="all">All Statuses</option>
+                <option value="Increase Stock">Increase Stock</option>
+                <option value="Maintain Stock">Maintain Stock</option>
+                <option value="Reduce Stock">Reduce Stock</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Current Stock</th>
+                  <th>Predicted Demand</th>
+                  <th>Recommended Stock</th>
+                  <th>Forecast Status & Driver</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="forecastTableBody">
+                <!-- Dynamically Rendered -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Reorder Purchase Order Modal -->
+  <div class="modal-overlay" id="reorderModal">
+    <div class="modal-content" style="max-width: 520px;">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" style="display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-cart-flatbed" style="color: var(--primary);"></i>
+            <span>Create Reorder Purchase Order</span>
+          </h3>
+          <p class="modal-subtitle" id="reorderProductBadge" style="margin-top: 0.25rem; font-size: 0.8rem; color: var(--text-muted);">
+            Product Details
+          </p>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeModal('reorderModal')" aria-label="Close modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="reorderForm">
+        <div class="modal-body">
+          <!-- Demand & Stock Intel Pill Grid -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.65rem; background: var(--bg-page); padding: 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 1.25rem;">
+            <div style="text-align: center;">
+              <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Current Stock</div>
+              <div style="font-size: 1.1rem; font-weight: 800; color: var(--text-main); margin-top: 0.2rem;" id="reorderCurrentStock">0 pcs</div>
+            </div>
+            <div style="text-align: center; border-left: 1px solid var(--border-color); border-right: 1px solid var(--border-color);">
+              <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Demand Forecast</div>
+              <div style="font-size: 1.1rem; font-weight: 800; color: var(--primary); margin-top: 0.2rem;" id="reorderPredictedDemand">0 pcs</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Recommended</div>
+              <div style="font-size: 1.1rem; font-weight: 800; color: #10b981; margin-top: 0.2rem;" id="reorderRecommendedStock">0 pcs</div>
+            </div>
+          </div>
+
+          <input type="hidden" id="reorderProductId">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="reorderQuantity">Reorder Quantity (Pieces) *</label>
+              <input type="number" id="reorderQuantity" class="form-control" min="1" max="10000" value="25" required>
+              <span style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.25rem; display: block;" id="reorderSuggestedHelp">Suggested buffer based on forecast deficit</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reorderSupplierSelect">Procurement Supplier *</label>
+              <select id="reorderSupplierSelect" class="form-control" required>
+                <option value="">Loading suppliers...</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="reorderPriority">Order Priority</label>
+              <select id="reorderPriority" class="form-control">
+                <option value="Urgent">Urgent (Express 2-3 Days)</option>
+                <option value="Standard" selected>Standard (5-7 Days)</option>
+                <option value="Economy">Economy Mill Batch (10-14 Days)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reorderActionType">Inventory Update Mode</label>
+              <select id="reorderActionType" class="form-control">
+                <option value="restock_now" selected>Restock Inventory in Firestore (+)</option>
+                <option value="po_draft">Save PO Draft Only (No Stock Change)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reorderNotes">PO Notes / Justification</label>
+            <input type="text" id="reorderNotes" class="form-control" placeholder="e.g. Replenishment triggered by predictive demand advice" value="Replenishment triggered by predictive demand advice">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('reorderModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="confirmReorderBtn">
+            <i class="fa-solid fa-cart-shopping"></i> Confirm & Place Reorder
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Shared Scripts -->
+  <script src="../js/common.js"></script>
+  <script src="../js/forecast.js"></script>
+</body>
+</html>

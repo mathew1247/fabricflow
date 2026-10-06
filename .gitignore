@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Environment & Credentials
+.env
+.env.local
+.env.*
+firebase/firebase-credentials.json
+firebase-adminsdk*.json
+*-firebase-adminsdk-*.json
+serviceAccountKey.json
+serviceaccountkey.json
+backend/serviceaccountkey.json
+backend/serviceAccountKey.json
+*serviceaccountkey*.json
+*serviceAccountKey*.json
+*.pem
+*.key
+credentials*.json
+
+# Local Data Storage & Reports
+reports/generated/*.csv
+reports/generated/*.pdf
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

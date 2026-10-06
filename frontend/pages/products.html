@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products | FabricFlow Analytics</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/sidebar.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/products.css">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <a href="dashboard.html" class="sidebar-brand">
+        <div class="brand-icon-wrapper">
+          <i class="fa-solid fa-shirt"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">FabricFlow</span>
+          <span class="brand-subtitle">Inventory Analytics</span>
+        </div>
+      </a>
+
+      <ul class="sidebar-menu">
+        <li class="nav-item">
+          <a href="dashboard.html" class="nav-link">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="products.html" class="nav-link active">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Products</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="inventory.html" class="nav-link">
+            <i class="fa-solid fa-boxes-stacked"></i>
+            <span>Inventory</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="sales.html" class="nav-link">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Sales</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="suppliers.html" class="nav-link">
+            <i class="fa-solid fa-truck-fast"></i>
+            <span>Suppliers</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="javascript:void(0)" class="nav-link nav-dropdown-toggle" id="analyticsToggle">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Analytics</span>
+            <i class="fa-solid fa-chevron-down chevron-icon"></i>
+          </a>
+          <div class="nav-submenu">
+            <a href="analytics.html?tab=sales" class="submenu-link">
+              <i class="fa-solid fa-arrow-trend-up" style="font-size:0.75rem;margin-right:4px;"></i> Sales Analytics
+            </a>
+            <a href="analytics.html?tab=inventory" class="submenu-link">
+              <i class="fa-solid fa-box-archive" style="font-size:0.75rem;margin-right:4px;"></i> Inventory Analytics
+            </a>
+            <a href="analytics.html?tab=performance" class="submenu-link">
+              <i class="fa-solid fa-star" style="font-size:0.75rem;margin-right:4px;"></i> Product Performance
+            </a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a href="forecast.html" class="nav-link">
+            <i class="fa-solid fa-bullseye"></i>
+            <span>Forecast</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="reports.html" class="nav-link">
+            <i class="fa-solid fa-file-lines"></i>
+            <span>Reports</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <a href="settings.html" class="nav-link">
+          <i class="fa-solid fa-gear"></i>
+          <span>Settings</span>
+        </a>
+        <a href="login.html" class="nav-link logout-link">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+
+      <!-- Header -->
+      <header class="app-header">
+        <div class="header-left">
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="page-title-group">
+            <h1>Products</h1>
+            <p class="page-subtitle">Manage your garment products and master catalog.</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <button class="btn btn-primary" onclick="openAddProductModal()">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add Product</span>
+          </button>
+
+          <div class="user-profile-menu">
+            <button class="user-profile-btn" id="userProfileBtn">
+              <div class="user-avatar"><i class="fa-solid fa-user"></i></div>
+              <div class="user-info"><div class="user-name">Admin</div></div>
+              <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; color: var(--text-muted); margin-left: 0.25rem;"></i>
+            </button>
+
+            <div class="dropdown-menu" id="userProfileDropdown">
+              <a href="settings.html" class="dropdown-item"><i class="fa-regular fa-user"></i> Profile</a>
+              <div class="dropdown-divider"></div>
+              <a href="login.html" class="dropdown-item text-danger"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Container -->
+      <main class="content-area">
+
+        <!-- Filter & Search Toolbar -->
+        <div class="filter-bar">
+          <div class="filter-group">
+            <div class="search-input-wrapper">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="productSearch" placeholder="Search by name, SKU, or supplier...">
+            </div>
+
+            <select class="select-filter" id="categoryFilter">
+              <option value="all">All Categories</option>
+              <option value="Casual">Casual</option>
+              <option value="Denim">Denim</option>
+              <option value="Formal">Formal</option>
+              <option value="Outerwear">Outerwear</option>
+            </select>
+
+            <select class="select-filter" id="sizeFilter">
+              <option value="all">All Sizes</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="30">30</option>
+              <option value="32">32</option>
+              <option value="34">34</option>
+            </select>
+
+            <select class="select-filter" id="statusFilter">
+              <option value="all">All Stock Status</option>
+              <option value="Normal">Normal</option>
+              <option value="Low">Low Stock</option>
+              <option value="Critical">Critical</option>
+            </select>
+          </div>
+
+          <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;" id="productCountBadge">
+            -- items
+          </div>
+        </div>
+
+        <!-- Products Table Card -->
+        <div class="card">
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Product ID</th>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Size</th>
+                  <th>Price</th>
+                  <th>Supplier</th>
+                  <th>Stock</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="productsTableBody">
+                <!-- Dynamically Rendered -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Add / Edit Product Modal -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="productModalTitle">Add Garment Product</h3>
+        <button class="modal-close-btn" onclick="closeModal('productModal')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="productForm">
+        <input type="hidden" id="isEditMode" value="false">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="productId">Product ID</label>
+              <input type="text" id="productId" class="form-control" placeholder="P013" required readonly>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="productName">Product Name</label>
+              <input type="text" id="productName" class="form-control" placeholder="e.g. Slim Denim Jacket" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="productCategory">Category</label>
+              <select id="productCategory" class="form-control" required>
+                <option value="Casual">Casual</option>
+                <option value="Denim">Denim</option>
+                <option value="Formal">Formal</option>
+                <option value="Outerwear">Outerwear</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="productSize">Size</label>
+              <select id="productSize" class="form-control" required>
+                <option value="S">S</option>
+                <option value="M" selected>M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="30">30</option>
+                <option value="32">32</option>
+                <option value="34">34</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="productPrice">Price (₹)</label>
+              <input type="number" id="productPrice" class="form-control" placeholder="1299" min="1" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="productStock">Initial Stock</label>
+              <input type="number" id="productStock" class="form-control" placeholder="50" min="0" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="productSupplier">Supplier</label>
+              <select id="productSupplier" class="form-control" required>
+                <!-- Populated dynamically -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="productMinStock">Reorder Threshold</label>
+              <input type="number" id="productMinStock" class="form-control" value="20" min="1" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('productModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- View Details Modal -->
+  <div class="modal-overlay" id="viewProductModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Garment Specifications</h3>
+        <button class="modal-close-btn" onclick="closeModal('viewProductModal')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body" id="productDetailContent">
+        <!-- Rendered dynamically -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('viewProductModal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirm Modal -->
+  <div class="modal-overlay" id="deleteConfirmModal">
+    <div class="modal-content" style="max-width: 420px;">
+      <div class="modal-header">
+        <h3 class="modal-title text-danger">
+          <i class="fa-solid fa-triangle-exclamation"></i> Confirm Deletion
+        </h3>
+        <button class="modal-close-btn" onclick="closeModal('deleteConfirmModal')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="color: var(--text-main); font-size: 0.95rem;">
+          Are you sure you want to delete <strong id="deleteProductName">this product</strong>?
+        </p>
+        <p style="font-size: 0.82rem; margin-top: 0.5rem; color: var(--text-muted);">
+          This item will be removed from your catalog and stock tables.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('deleteConfirmModal')">Cancel</button>
+        <button type="button" id="confirmDeleteBtn" class="btn btn-danger">Delete Product</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shared Scripts -->
+  <script src="../js/common.js"></script>
+  <script src="../js/products.js"></script>
+</body>
+</html>

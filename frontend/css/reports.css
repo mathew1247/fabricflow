@@ -1,0 +1,86 @@
+/* ===================================================================
+   FABRICFLOW ANALYTICS - REPORTS PAGE STYLES
+   Exact Jobgio Minimalist Monochrome Theme
+   =================================================================== */
+
+.report-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.report-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all var(--transition-fast);
+}
+
+.report-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: #111316;
+}
+
+.report-card.selected {
+  border-color: #111316;
+  background: var(--bg-card);
+}
+
+.report-card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+  background: var(--bg-subtle);
+  color: #111316;
+}
+
+[data-theme="dark"] .report-card-icon {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.report-card-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.4rem;
+}
+
+.report-card-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+.report-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+@media (max-width: 1024px) {
+  .report-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .report-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}

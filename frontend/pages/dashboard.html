@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | FabricFlow Analytics</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/sidebar.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- Reusable Sidebar -->
+    <aside class="sidebar">
+      <a href="dashboard.html" class="sidebar-brand">
+        <div class="brand-icon-wrapper">
+          <i class="fa-solid fa-shirt"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">FabricFlow</span>
+          <span class="brand-subtitle">Inventory Analytics</span>
+        </div>
+      </a>
+
+      <ul class="sidebar-menu">
+        <li class="nav-item">
+          <a href="dashboard.html" class="nav-link active">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="products.html" class="nav-link">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Products</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="inventory.html" class="nav-link">
+            <i class="fa-solid fa-boxes-stacked"></i>
+            <span>Inventory</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="sales.html" class="nav-link">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Sales</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="suppliers.html" class="nav-link">
+            <i class="fa-solid fa-truck-fast"></i>
+            <span>Suppliers</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="javascript:void(0)" class="nav-link nav-dropdown-toggle" id="analyticsToggle">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Analytics</span>
+            <i class="fa-solid fa-chevron-down chevron-icon"></i>
+          </a>
+          <div class="nav-submenu">
+            <a href="analytics.html?tab=sales" class="submenu-link">
+              <i class="fa-solid fa-arrow-trend-up" style="font-size:0.75rem;margin-right:4px;"></i> Sales Analytics
+            </a>
+            <a href="analytics.html?tab=inventory" class="submenu-link">
+              <i class="fa-solid fa-box-archive" style="font-size:0.75rem;margin-right:4px;"></i> Inventory Analytics
+            </a>
+            <a href="analytics.html?tab=performance" class="submenu-link">
+              <i class="fa-solid fa-star" style="font-size:0.75rem;margin-right:4px;"></i> Product Performance
+            </a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a href="forecast.html" class="nav-link">
+            <i class="fa-solid fa-bullseye"></i>
+            <span>Forecast</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="reports.html" class="nav-link">
+            <i class="fa-solid fa-file-lines"></i>
+            <span>Reports</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <a href="settings.html" class="nav-link">
+          <i class="fa-solid fa-gear"></i>
+          <span>Settings</span>
+        </a>
+        <a href="login.html" class="nav-link logout-link">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+
+      <!-- Header -->
+      <header class="app-header">
+        <div class="header-left">
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="page-title-group">
+            <h1>Dashboard</h1>
+            <p class="page-subtitle">Welcome back! Here's your garment inventory overview.</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="header-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="globalSearchInput" placeholder="Search products, sales, suppliers...">
+          </div>
+
+          <div class="header-actions">
+            <button class="icon-button" onclick="showToast('You have 3 low stock alerts and 1 new order pending.', 'info')" title="Notifications">
+              <i class="fa-regular fa-bell"></i>
+              <span class="notification-badge"></span>
+            </button>
+          </div>
+
+          <div class="user-profile-menu">
+            <button class="user-profile-btn" id="userProfileBtn">
+              <div class="user-avatar">
+                <i class="fa-solid fa-user"></i>
+              </div>
+              <div class="user-info">
+                <div class="user-name">Admin</div>
+              </div>
+              <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; color: var(--text-muted); margin-left: 0.25rem;"></i>
+            </button>
+
+            <div class="dropdown-menu" id="userProfileDropdown">
+              <a href="settings.html" class="dropdown-item">
+                <i class="fa-regular fa-user"></i> Account Profile
+              </a>
+              <a href="settings.html" class="dropdown-item">
+                <i class="fa-solid fa-sliders"></i> Preferences
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="login.html" class="dropdown-item text-danger">
+                <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <main class="content-area">
+
+        <!-- Date & Time Toolbar -->
+        <div class="toolbar-container">
+          <div class="time-filter-group" id="dashboardTimePills">
+            <button class="time-pill" data-period="day">Day</button>
+            <button class="time-pill" data-period="week">Week</button>
+            <button class="time-pill active" data-period="month">Month</button>
+            <button class="time-pill" data-period="year">Year</button>
+          </div>
+
+          <div class="date-picker-wrapper" style="position: relative;">
+            <button class="date-range-picker" id="dateRangePicker" type="button" aria-expanded="false" aria-haspopup="true">
+              <i class="fa-regular fa-calendar" style="color: var(--primary);"></i>
+              <span id="dateRangeSpan">1 Sep 2024 - 30 Sep 2024</span>
+              <i class="fa-solid fa-chevron-down date-picker-arrow" id="datePickerArrow" style="font-size: 0.75rem; color: var(--text-light); margin-left: 0.35rem; transition: transform 0.2s;"></i>
+            </button>
+
+            <!-- Date Range Dropdown Popover -->
+            <div class="date-range-dropdown" id="dateRangeDropdown" style="display: none;">
+              <div class="date-dropdown-header">
+                <div>
+                  <div style="font-weight: 700; font-size: 0.85rem; color: var(--text-main);">Filter By Date</div>
+                  <div style="font-size: 0.72rem; color: var(--text-muted);">Real Firestore Transactions</div>
+                </div>
+                <span class="badge badge-success" style="font-size: 0.68rem; padding: 0.2rem 0.5rem;">Live DB</span>
+              </div>
+              <div class="date-presets-grid" id="datePresetsGrid">
+                <button type="button" class="date-preset-btn active" data-preset="sep" data-start="2024-09-01" data-end="2024-09-30">Sep 2024 (Peak)</button>
+                <button type="button" class="date-preset-btn" data-preset="oct" data-start="2024-10-01" data-end="2024-10-06">Oct 2024 (Recent)</button>
+                <button type="button" class="date-preset-btn" data-preset="aug" data-start="2024-08-01" data-end="2024-08-31">Aug 2024 (Launch)</button>
+                <button type="button" class="date-preset-btn" data-preset="all" data-start="" data-end="">All Time</button>
+                <button type="button" class="date-preset-btn" data-preset="last30" data-start="2024-09-06" data-end="2024-10-06">Last 30 Days</button>
+                <button type="button" class="date-preset-btn" data-preset="last7" data-start="2024-09-29" data-end="2024-10-06">Last 7 Days</button>
+              </div>
+              <div class="date-custom-divider">
+                <span>or custom span</span>
+              </div>
+              <div class="date-custom-inputs">
+                <div class="date-field-group">
+                  <label for="customStartDate">From</label>
+                  <input type="date" id="customStartDate" value="2024-09-01" min="2024-01-01" max="2026-12-31">
+                </div>
+                <div class="date-field-group">
+                  <label for="customEndDate">To</label>
+                  <input type="date" id="customEndDate" value="2024-09-30" min="2024-01-01" max="2026-12-31">
+                </div>
+              </div>
+              <div class="date-dropdown-actions">
+                <button type="button" class="btn btn-secondary btn-sm" id="resetDateRangeBtn">Reset</button>
+                <button type="button" class="btn btn-primary btn-sm" id="applyCustomDateRangeBtn">Apply Range</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 KPI Cards Matching Reference Image -->
+        <div class="kpi-grid">
+
+          <!-- 1. Total Sales -->
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon-box kpi-icon-sales">
+                <i class="fa-solid fa-cart-shopping"></i>
+              </div>
+              <span class="kpi-label">Total Sales</span>
+            </div>
+            <div class="kpi-middle">
+              <span class="kpi-value" id="kpiTotalSales">₹272,841</span>
+              <svg class="kpi-sparkline" viewBox="0 0 60 28" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path id="kpiSalesSparkline" d="M2 22 L15 17 L28 20 L42 8 L58 4"/>
+              </svg>
+            </div>
+            <div class="kpi-bottom">
+              <span class="kpi-trend positive" id="kpiSalesTrend">
+                <i class="fa-solid fa-arrow-up"></i> <span id="kpiSalesGrowth">12.5%</span>
+              </span>
+              <span id="kpiSalesSub">from last month</span>
+            </div>
+          </div>
+
+          <!-- 2. Total Products -->
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon-box kpi-icon-products">
+                <i class="fa-solid fa-box-open"></i>
+              </div>
+              <span class="kpi-label" id="kpiProductsLabel">Total Products</span>
+            </div>
+            <div class="kpi-middle">
+              <span class="kpi-value" id="kpiTotalProducts">9</span>
+              <svg class="kpi-sparkline" viewBox="0 0 60 28" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path id="kpiProductsSparkline" d="M2 24 L16 19 L30 21 L44 10 L58 6"/>
+              </svg>
+            </div>
+            <div class="kpi-bottom">
+              <span class="kpi-trend positive" id="kpiProductsTrend">
+                <i class="fa-solid fa-arrow-up"></i> <span id="kpiProductsGrowth">64.3%</span>
+              </span>
+              <span id="kpiProductsSub">out of 14 catalog styles</span>
+            </div>
+          </div>
+
+          <!-- 3. Total Stock -->
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon-box kpi-icon-stock">
+                <i class="fa-solid fa-layer-group"></i>
+              </div>
+              <span class="kpi-label" id="kpiStockLabel">Total Stock</span>
+            </div>
+            <div class="kpi-middle">
+              <span class="kpi-value" id="kpiTotalStock">778</span>
+              <svg class="kpi-sparkline" viewBox="0 0 60 28" fill="none" stroke="#8b5cf6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path id="kpiStockSparkline" d="M2 20 L16 18 L32 23 L44 12 L58 5"/>
+              </svg>
+            </div>
+            <div class="kpi-bottom">
+              <span class="kpi-trend positive" id="kpiStockTrend">
+                <i class="fa-solid fa-arrow-up"></i> <span id="kpiStockGrowth">5.6%</span>
+              </span>
+              <span id="kpiStockSub">from last month</span>
+            </div>
+          </div>
+
+          <!-- 4. Low Stock Items -->
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon-box kpi-icon-low">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+              </div>
+              <span class="kpi-label" id="kpiLowStockLabel">Low Stock Items</span>
+            </div>
+            <div class="kpi-middle">
+              <span class="kpi-value" id="kpiLowStock">2</span>
+              <svg class="kpi-sparkline" viewBox="0 0 60 28" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path id="kpiLowStockSparkline" d="M2 8 L16 14 L30 11 L44 19 L58 24"/>
+              </svg>
+            </div>
+            <div class="kpi-bottom">
+              <span class="kpi-trend negative" id="kpiLowStockTrend">
+                <i class="fa-solid fa-triangle-exclamation"></i> <span id="kpiLowStockGrowth">2 items</span>
+              </span>
+              <span id="kpiLowStockSub">requires restocking</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Middle Analytics Grid -->
+        <div class="dashboard-main-grid">
+
+          <!-- Sales Trend Chart Card -->
+          <div class="card sales-trend-card">
+            <div class="card-header">
+              <div class="card-title">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Sales Trend</span>
+              </div>
+              <select class="select-filter" id="trendFilterSelect" style="padding: 0.35rem 1.75rem 0.35rem 0.75rem; font-size: 0.8rem;">
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly" selected>Monthly</option>
+                <option value="quarterly">Quarterly</option>
+                <option value="yearly">Yearly</option>
+              </select>
+            </div>
+
+            <div class="chart-wrapper">
+              <canvas id="salesTrendCanvas"></canvas>
+            </div>
+          </div>
+
+          <!-- Right Column: Stock Status Donut + Top Categories -->
+          <div class="dashboard-right-col">
+
+            <!-- Stock Status Donut -->
+            <div class="card stock-status-card">
+              <div class="card-header">
+                <div class="card-title">
+                  <i class="fa-solid fa-box-archive"></i>
+                  <span>Stock Status</span>
+                </div>
+              </div>
+
+              <div class="donut-chart-container">
+                <div class="donut-canvas-wrapper">
+                  <canvas id="stockDonutCanvas"></canvas>
+                  <div class="donut-center-text">
+                    <div class="donut-center-value">18,540</div>
+                    <div class="donut-center-label">Total Stock</div>
+                  </div>
+                </div>
+
+                <div class="stock-legend-list">
+                  <div class="stock-legend-item">
+                    <div class="legend-label-group">
+                      <span class="legend-dot dot-normal"></span>
+                      <span>Normal</span>
+                    </div>
+                    <span class="legend-pct">75%</span>
+                  </div>
+                  <div class="stock-legend-item">
+                    <div class="legend-label-group">
+                      <span class="legend-dot dot-low"></span>
+                      <span>Low Stock</span>
+                    </div>
+                    <span class="legend-pct">18%</span>
+                  </div>
+                  <div class="stock-legend-item">
+                    <div class="legend-label-group">
+                      <span class="legend-dot dot-critical"></span>
+                      <span>Critical</span>
+                    </div>
+                    <span class="legend-pct">7%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Top Categories Progress Bars -->
+            <div class="card">
+              <div class="card-header" style="margin-bottom: 0.75rem;">
+                <div class="card-title">
+                  <i class="fa-solid fa-shirt"></i>
+                  <span>Top Categories by Sales</span>
+                </div>
+                <a href="analytics.html?tab=sales" class="btn-icon-link" title="Detailed Category Breakdown">
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+
+              <div class="category-progress-list">
+                <div class="category-progress-item">
+                  <div class="category-progress-meta">
+                    <span>T-Shirts</span>
+                    <span>32%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div class="progress-bar-fill progress-tshirts" style="width: 32%;"></div>
+                  </div>
+                </div>
+
+                <div class="category-progress-item">
+                  <div class="category-progress-meta">
+                    <span>Shirts</span>
+                    <span>24%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div class="progress-bar-fill progress-shirts" style="width: 24%;"></div>
+                  </div>
+                </div>
+
+                <div class="category-progress-item">
+                  <div class="category-progress-meta">
+                    <span>Jeans</span>
+                    <span>18%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div class="progress-bar-fill progress-jeans" style="width: 18%;"></div>
+                  </div>
+                </div>
+
+                <div class="category-progress-item">
+                  <div class="category-progress-meta">
+                    <span>Jackets</span>
+                    <span>12%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div class="progress-bar-fill progress-jackets" style="width: 12%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Recent Sales Table Card -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <span>Recent Sales</span>
+            </div>
+            <a href="sales.html" class="btn-icon-link">
+              <span>View All</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Sale ID</th>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Quantity</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="recentSalesTableBody">
+                <!-- Dynamically Rendered via js/dashboard.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <!-- Shared Scripts -->
+  <script src="../js/common.js"></script>
+  <script src="../js/dashboard.js"></script>
+</body>
+</html>

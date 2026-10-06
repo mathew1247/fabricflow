@@ -1,0 +1,323 @@
+/* ===================================================================
+   FABRICFLOW ANALYTICS - DASHBOARD PAGE STYLES
+   Exact Jobgio Tone & Minimalist Aesthetics
+   =================================================================== */
+
+.dashboard-main-grid {
+  display: grid;
+  grid-template-columns: 1.85fr 1.15fr;
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.dashboard-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Sales Trend Card */
+.sales-trend-card {
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-wrapper {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  min-height: 280px;
+}
+
+/* Stock Status Card */
+.stock-status-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.donut-chart-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.donut-canvas-wrapper {
+  position: relative;
+  width: 145px;
+  height: 145px;
+  flex-shrink: 0;
+}
+
+.donut-center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+}
+
+.donut-center-value {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.donut-center-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.stock-legend-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.stock-legend-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+.legend-label-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: var(--radius-full);
+}
+
+.dot-normal { background-color: #111316; }
+.dot-low { background-color: #727b8a; }
+.dot-critical { background-color: #cbd5e1; }
+
+.legend-pct {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* Top Categories Progress Bars (Monochrome Slate Gradients) */
+.category-progress-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.category-progress-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.category-progress-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.progress-tshirts { background: #111316; }
+.progress-shirts { background: #475569; }
+.progress-jeans { background: #64748b; }
+.progress-jackets { background: #94a3b8; }
+
+/* Table Thumbnail Styles */
+.garment-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  color: #111316;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-color);
+}
+
+.table-action-dots {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  cursor: pointer;
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+.table-action-dots:hover {
+  color: var(--text-main);
+}
+
+@media (max-width: 1024px) {
+  .dashboard-main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===================================================================
+   DATE RANGE PICKER DROPDOWN POPOVER
+   =================================================================== */
+.date-picker-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.date-range-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 320px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 14px 35px -8px rgba(0, 0, 0, 0.18), 0 4px 14px rgba(0, 0, 0, 0.06);
+  padding: 1.15rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  animation: dateDropdownFadeIn 0.18s ease-out;
+}
+
+@keyframes dateDropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.date-dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.date-presets-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.date-preset-btn {
+  padding: 0.45rem 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-main);
+  background-color: var(--bg-page);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+
+.date-preset-btn:hover {
+  background-color: var(--border-color);
+  color: var(--text-main);
+}
+
+.date-preset-btn.active {
+  background-color: #111316;
+  color: #ffffff;
+  border-color: #111316;
+  box-shadow: 0 2px 6px rgba(17, 19, 22, 0.25);
+}
+
+[data-theme="dark"] .date-preset-btn.active {
+  background-color: #ffffff;
+  color: #111316;
+  border-color: #ffffff;
+}
+
+.date-custom-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--text-light);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0.15rem 0;
+}
+
+.date-custom-divider::before,
+.date-custom-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.date-custom-divider span {
+  padding: 0 0.5rem;
+}
+
+.date-custom-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.date-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.date-field-group label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.date-field-group input[type="date"] {
+  width: 100%;
+  padding: 0.45rem 0.55rem;
+  font-size: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-page);
+  color: var(--text-main);
+  font-family: inherit;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.date-field-group input[type="date"]:focus {
+  border-color: #111316;
+}
+
+.date-dropdown-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-color);
+}

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory | FabricFlow Analytics</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/sidebar.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/inventory.css">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <a href="dashboard.html" class="sidebar-brand">
+        <div class="brand-icon-wrapper">
+          <i class="fa-solid fa-shirt"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">FabricFlow</span>
+          <span class="brand-subtitle">Inventory Analytics</span>
+        </div>
+      </a>
+
+      <ul class="sidebar-menu">
+        <li class="nav-item">
+          <a href="dashboard.html" class="nav-link">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="products.html" class="nav-link">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Products</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="inventory.html" class="nav-link active">
+            <i class="fa-solid fa-boxes-stacked"></i>
+            <span>Inventory</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="sales.html" class="nav-link">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Sales</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="suppliers.html" class="nav-link">
+            <i class="fa-solid fa-truck-fast"></i>
+            <span>Suppliers</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="javascript:void(0)" class="nav-link nav-dropdown-toggle" id="analyticsToggle">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Analytics</span>
+            <i class="fa-solid fa-chevron-down chevron-icon"></i>
+          </a>
+          <div class="nav-submenu">
+            <a href="analytics.html?tab=sales" class="submenu-link">
+              <i class="fa-solid fa-arrow-trend-up" style="font-size:0.75rem;margin-right:4px;"></i> Sales Analytics
+            </a>
+            <a href="analytics.html?tab=inventory" class="submenu-link">
+              <i class="fa-solid fa-box-archive" style="font-size:0.75rem;margin-right:4px;"></i> Inventory Analytics
+            </a>
+            <a href="analytics.html?tab=performance" class="submenu-link">
+              <i class="fa-solid fa-star" style="font-size:0.75rem;margin-right:4px;"></i> Product Performance
+            </a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a href="forecast.html" class="nav-link">
+            <i class="fa-solid fa-bullseye"></i>
+            <span>Forecast</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="reports.html" class="nav-link">
+            <i class="fa-solid fa-file-lines"></i>
+            <span>Reports</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <a href="settings.html" class="nav-link">
+          <i class="fa-solid fa-gear"></i>
+          <span>Settings</span>
+        </a>
+        <a href="login.html" class="nav-link logout-link">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+
+      <!-- Header -->
+      <header class="app-header">
+        <div class="header-left">
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="page-title-group">
+            <h1>Inventory</h1>
+            <p class="page-subtitle">Monitor and manage real-time garment stock and thresholds.</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="user-profile-menu">
+            <button class="user-profile-btn" id="userProfileBtn">
+              <div class="user-avatar"><i class="fa-solid fa-user"></i></div>
+              <div class="user-info"><div class="user-name">Admin</div></div>
+              <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; color: var(--text-muted); margin-left: 0.25rem;"></i>
+            </button>
+
+            <div class="dropdown-menu" id="userProfileDropdown">
+              <a href="settings.html" class="dropdown-item"><i class="fa-regular fa-user"></i> Profile</a>
+              <div class="dropdown-divider"></div>
+              <a href="login.html" class="dropdown-item text-danger"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Container -->
+      <main class="content-area">
+
+        <!-- Top Stock Summary Cards -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon-box kpi-icon-stock">
+                <i class="fa-solid fa-boxes-stacked"></i>
+              </div>
+              <span class="kpi-label">Total Stock</span>
+            </div>
+            <div class="kpi-middle">
+              <span class="kpi-value" id="invTotalStock">--</span>
+            </div>
+            <div class="kpi-bottom">
+              <span class="text-primary font-semibold">All Categories</span>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon-box kpi-icon-sales">
+                <i class="fa-solid fa-circle-check"></i>
+              </div>
+              <span class="kpi-label">Normal Stock</span>
+            </div>
+            <div class="kpi-middle">
+              <span class="kpi-value text-success" id="invNormalStock">--</span>
+            </div>
+            <div class="kpi-bottom">
+              <span class="text-muted">Healthy buffer inventory</span>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon-box" style="background-color: var(--warning-bg); color: var(--warning-accent);">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+              </div>
+              <span class="kpi-label">Low Stock</span>
+            </div>
+            <div class="kpi-middle">
+              <span class="kpi-value text-warning" id="invLowStock">--</span>
+            </div>
+            <div class="kpi-bottom">
+              <span class="text-warning font-semibold">Near reorder limit</span>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon-box kpi-icon-low">
+                <i class="fa-solid fa-radiation"></i>
+              </div>
+              <span class="kpi-label">Critical Stock</span>
+            </div>
+            <div class="kpi-middle">
+              <span class="kpi-value text-danger" id="invCriticalStock">--</span>
+            </div>
+            <div class="kpi-bottom">
+              <span class="text-danger font-semibold">Immediate action needed</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+          <div class="filter-group">
+            <div class="search-input-wrapper">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="invSearch" placeholder="Search garment stock...">
+            </div>
+
+            <select class="select-filter" id="invCategoryFilter">
+              <option value="all">All Categories</option>
+              <option value="Casual">Casual</option>
+              <option value="Denim">Denim</option>
+              <option value="Formal">Formal</option>
+              <option value="Outerwear">Outerwear</option>
+            </select>
+
+            <select class="select-filter" id="invStatusFilter">
+              <option value="all">All Stock Status</option>
+              <option value="Normal">Normal</option>
+              <option value="Low">Low</option>
+              <option value="Critical">Critical</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Inventory Table Card -->
+        <div class="card">
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Size</th>
+                  <th>Current Stock</th>
+                  <th>Reorder Level</th>
+                  <th>Stock Status</th>
+                  <th>Last Updated</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="inventoryTableBody">
+                <!-- Dynamically Rendered -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Adjust Stock Modal -->
+  <div class="modal-overlay" id="adjustStockModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <i class="fa-solid fa-sliders text-primary"></i> Adjust Garment Stock
+        </h3>
+        <button class="modal-close-btn" onclick="closeModal('adjustStockModal')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="adjustStockForm">
+        <div class="modal-body">
+          <p style="font-size: 0.95rem; margin-bottom: 1rem;">
+            Adjusting inventory for <strong id="adjustProductName" class="text-primary">--</strong>
+          </p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="adjustType">Action Type</label>
+              <select id="adjustType" class="form-control">
+                <option value="add">Add Inflow / Restock (+)</option>
+                <option value="deduct">Deduct Outflow / Shrinkage (-)</option>
+                <option value="set">Set Exact Count (=)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="adjustQty">Quantity (Pieces)</label>
+              <input type="number" id="adjustQty" class="form-control" value="10" min="1" required>
+            </div>
+          </div>
+
+          <div class="stock-adjustment-preview">
+            <div class="preview-box">
+              <span class="val" id="previewCurrent">0</span>
+              <span class="lbl">Current Stock</span>
+            </div>
+            <span class="preview-operator" id="previewOp">+</span>
+            <div class="preview-box">
+              <span class="val" id="previewChange">10</span>
+              <span class="lbl">Adjustment</span>
+            </div>
+            <span class="preview-operator">=</span>
+            <div class="preview-box">
+              <span class="val text-primary" id="previewFinal">0</span>
+              <span class="lbl">New Stock</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="adjustReason">Reason / Audit Notes</label>
+            <input type="text" id="adjustReason" class="form-control" placeholder="e.g. New delivery received from mill">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('adjustStockModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Adjustment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Shared Scripts -->
+  <script src="../js/common.js"></script>
+  <script src="../js/inventory.js"></script>
+</body>
+</html>

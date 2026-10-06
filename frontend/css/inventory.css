@@ -1,0 +1,40 @@
+/* ===================================================================
+   FABRICFLOW ANALYTICS - INVENTORY PAGE STYLES
+   Exact Jobgio Minimalist Monochrome Theme
+   =================================================================== */
+
+.stock-adjustment-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--border-color);
+  margin: 1.25rem 0;
+  text-align: center;
+}
+
+.preview-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-box .val {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.preview-box .lbl {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.preview-operator {
+  font-size: 1.25rem;
+  color: var(--text-light);
+  font-weight: 700;
+}

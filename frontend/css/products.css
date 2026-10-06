@@ -1,0 +1,64 @@
+/* ===================================================================
+   FABRICFLOW ANALYTICS - PRODUCTS PAGE STYLES
+   Exact Jobgio Minimalist Monochrome Theme
+   =================================================================== */
+
+.product-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.action-btn-mini {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.action-btn-mini:hover {
+  background: var(--bg-subtle);
+  color: var(--text-main);
+  border-color: #111316;
+}
+
+.action-btn-mini.delete-hover:hover {
+  background: var(--danger-bg);
+  color: var(--danger-accent);
+  border-color: var(--danger-border);
+}
+
+.product-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.detail-item {
+  padding: 0.85rem;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.detail-item .label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.detail-item .value {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-top: 0.25rem;
+}
