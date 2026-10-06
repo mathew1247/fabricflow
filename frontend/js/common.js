@@ -4,9 +4,9 @@
  * Production Flask REST API Client with Offline LocalStorage Fallback
  */
 
-// Central API Base URL Configuration (Configurable for local and production deployment)
-const API_BASE_URL = window.location.origin.includes(":5000") 
-  ? `${window.location.origin}/api` 
+// Central API Base URL Configuration (Dynamically handles production Render deployment and local Flask)
+const API_BASE_URL = window.location.protocol.startsWith("http")
+  ? `${window.location.origin}/api`
   : "http://127.0.0.1:5000/api";
 
 /**

@@ -923,43 +923,71 @@
 
 @media (max-width: 768px) {
   .app-header {
-    padding: 0.85rem 1rem;
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "left right"
+      "search search";
+    gap: 0.6rem 0.75rem;
+    padding: 0.75rem 1rem;
+    height: auto;
+    min-height: 60px;
+    align-items: center;
   }
 
   .header-left {
-    gap: 0.75rem;
-    flex: 1;
+    grid-area: left;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
     min-width: 0;
   }
 
-  .page-title-group h1 {
-    font-size: 1.25rem;
-    line-height: 1.2;
-  }
-
-  .page-subtitle {
-    font-size: 0.78rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 220px;
-  }
-
   .header-right {
+    grid-area: right;
+    display: flex;
+    align-items: center;
     gap: 0.5rem;
+    justify-content: flex-end;
   }
 
   .header-search {
-    order: 3;
+    grid-area: search;
     width: 100% !important;
-    margin-top: 0.25rem;
+    margin: 0;
   }
 
   .header-search input,
   .header-search input:focus {
     width: 100% !important;
+  }
+
+  .page-title-group {
+    min-width: 0;
+  }
+
+  .page-title-group h1 {
+    font-size: 1.2rem;
+    line-height: 1.2;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .page-subtitle {
+    display: none;
+  }
+
+  .user-info,
+  .user-profile-btn .fa-chevron-down {
+    display: none !important;
+  }
+
+  .user-profile-btn {
+    padding: 0;
+    border: none;
+    background: transparent;
   }
 
   .filter-bar {
