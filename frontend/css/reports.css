@@ -83,4 +83,14 @@
   .report-cards-grid {
     grid-template-columns: 1fr;
   }
+
+  .report-card-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .report-card-actions .btn {
+    width: 100%;
+  }
 }
+

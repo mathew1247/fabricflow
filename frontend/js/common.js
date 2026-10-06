@@ -204,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const savedTheme = localStorage.getItem("fabricflow_theme") || "light";
   document.documentElement.setAttribute("data-theme", savedTheme);
 
-  // Mobile menu toggle
+  // Mobile menu toggle & drawer handling
   const mobileBtn = document.getElementById("mobileMenuBtn");
   const sidebar = document.querySelector(".sidebar");
   let overlay = document.querySelector(".sidebar-overlay");
@@ -215,19 +215,50 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(overlay);
   }
 
+  const closeSidebar = () => {
+    if (sidebar) sidebar.classList.remove("mobile-open");
+    if (overlay) overlay.classList.remove("active");
+    document.body.style.overflow = "";
+  };
+
+  const openSidebar = () => {
+    if (sidebar) sidebar.classList.add("mobile-open");
+    if (overlay) overlay.classList.add("active");
+    if (window.innerWidth <= 992) {
+      document.body.style.overflow = "hidden";
+    }
+  };
+
   if (mobileBtn && sidebar) {
-    mobileBtn.addEventListener("click", () => {
-      sidebar.classList.toggle("mobile-open");
-      if (overlay) overlay.classList.toggle("active");
+    mobileBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (sidebar.classList.contains("mobile-open")) {
+        closeSidebar();
+      } else {
+        openSidebar();
+      }
     });
   }
 
   if (overlay) {
-    overlay.addEventListener("click", () => {
-      if (sidebar) sidebar.classList.remove("mobile-open");
-      overlay.classList.remove("active");
-    });
+    overlay.addEventListener("click", closeSidebar);
   }
+
+  // Close mobile sidebar automatically when clicking navigation items
+  document.querySelectorAll(".sidebar .nav-link:not(.nav-dropdown-toggle), .sidebar .submenu-link, .sidebar-brand, .sidebar-footer a").forEach(link => {
+    link.addEventListener("click", () => {
+      if (window.innerWidth <= 992) {
+        closeSidebar();
+      }
+    });
+  });
+
+  // Handle screen resize: clean up body scroll lock if expanded to desktop
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 992) {
+      closeSidebar();
+    }
+  });
 
   // Analytics dropdown menu in sidebar
   const analyticsToggle = document.getElementById("analyticsToggle");

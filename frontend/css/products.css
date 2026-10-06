@@ -62,3 +62,10 @@
   color: var(--text-main);
   margin-top: 0.25rem;
 }
+
+@media (max-width: 480px) {
+  .product-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

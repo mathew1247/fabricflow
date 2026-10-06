@@ -38,3 +38,11 @@
   color: var(--text-light);
   font-weight: 700;
 }
+
+@media (max-width: 480px) {
+  .stock-adjustment-preview {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+

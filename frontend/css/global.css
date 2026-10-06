@@ -249,3 +249,57 @@ a:hover {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* ===================================================================
+   RESPONSIVE LAYOUT SYSTEM & CONTAINER BREAKPOINTS
+   =================================================================== */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@media (max-width: 992px) {
+  body {
+    padding: 0;
+  }
+  .app-container {
+    border-radius: 0;
+    min-height: 100vh;
+    border: none;
+    box-shadow: none;
+  }
+  .main-wrapper {
+    margin-left: 0 !important;
+    width: 100%;
+    max-width: 100%;
+  }
+  .content-area {
+    padding: 1.5rem 1.25rem 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 1.35rem; }
+  h2 { font-size: 1.2rem; }
+  h3 { font-size: 1.05rem; }
+  h4 { font-size: 0.92rem; }
+  .content-area {
+    padding: 1.25rem 1rem 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 13.5px;
+  }
+  .content-area {
+    padding: 1rem 0.75rem 1.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .content-area {
+    padding: 0.85rem 0.6rem 1.25rem;
+  }
+}
+
